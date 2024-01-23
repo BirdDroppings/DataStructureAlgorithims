@@ -67,6 +67,11 @@ public class personDetails {
         this.phoneNum = phoneNum;
     }
     
+    public void helloWorld()
+    {
+        System.out.println("hello world!");
+    }
+    
     
     public String getDetails()
     {
