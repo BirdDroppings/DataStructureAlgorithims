@@ -23,6 +23,8 @@ public class AddressBookGUI extends javax.swing.JFrame {
     
     ArrayList<personDetails> list = new ArrayList<>();
     
+    private int index=0;
+    
     
     private void addPerson()
     {
@@ -48,18 +50,18 @@ public class AddressBookGUI extends javax.swing.JFrame {
         }
         else
         {
-           String index = phoneNumText.getText();
+           String index1 = phoneNumText.getText();
             
             for(int i=0; i<list.size(); i++)
             {
                 personDetails grab = list.get(i);
                 
-                if(grab.getPhoneNum().equalsIgnoreCase(index))
+                if(grab.getPhoneNum().equalsIgnoreCase(index1))
                 {
                     JOptionPane.showMessageDialog(null, "person is found!");
                     displayArea.setText(null);
                     displayArea.append(grab.getDetails());
-                } else if(!grab.getPhoneNum().equalsIgnoreCase(index))
+                } else if(!grab.getPhoneNum().equalsIgnoreCase(index1))
                 {
                     JOptionPane.showMessageDialog(null, "This person phone num is wrong or does not exist in the phone book");
                 }
@@ -80,18 +82,19 @@ public class AddressBookGUI extends javax.swing.JFrame {
         String address = addressText.getText();
         String phoneNum = phoneNumText.getText();
         
-        int index = 0;
         
-        if(index> 5){
+       
+        if(index < arrayObj.length){
+            
         arrayObj [index] = new personDetails(firstName, lastName, email, address, phoneNum);
-        index++;
+        
         
          try{
             File f = new File("phoneBook.dat");
             FileOutputStream fs = new FileOutputStream(f);
             ObjectOutputStream os = new ObjectOutputStream(fs);
    
-            for(int i=0; i>arrayObj.length; i++){
+            for(int i=0; i<arrayObj.length; i++){
             os.writeObject(arrayObj[i]);
             }
             os.close();
@@ -101,13 +104,14 @@ public class AddressBookGUI extends javax.swing.JFrame {
         catch(IOException ex){
             JOptionPane.showMessageDialog(null, "There is an error with the code "+ex);
         }
-        
-        
-        } else if (index >= 5)
+       
+        JOptionPane.showMessageDialog(null, index);
+        } else if (index <= arrayObj.length)
         {
             JOptionPane.showMessageDialog(null, "The file is full");
         }
        
+   
         
         
     }
@@ -344,6 +348,7 @@ public class AddressBookGUI extends javax.swing.JFrame {
     private void fileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileBTNActionPerformed
         // TODO add your handling code here:
         writingToFile();
+        index++;
     }//GEN-LAST:event_fileBTNActionPerformed
 
     /**

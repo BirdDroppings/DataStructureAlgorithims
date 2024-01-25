@@ -53,13 +53,21 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="fnLabel" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
-                              <Component id="snLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="snText" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
-                              <Component id="emailLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              <Component id="emailText" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="fnLabel" alignment="0" min="-2" pref="78" max="-2" attributes="0"/>
+                                      <Component id="snLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="snText" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                      <Component id="emailLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="emailText" alignment="0" min="-2" pref="137" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="fileBTN" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="searchBTN" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -113,9 +121,9 @@
                                       <Component id="phoneNumText" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="snLabel" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="addressLabel" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="snLabel" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -136,7 +144,10 @@
                               <Component id="jScrollPane1" alignment="1" min="-2" pref="240" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="deleteBTN" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="deleteBTN" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Component id="fileBTN" min="-2" pref="31" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="31" max="32767" attributes="0"/>
@@ -222,6 +233,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="displayBTNActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="fileBTN">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Write to File"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileBTNActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

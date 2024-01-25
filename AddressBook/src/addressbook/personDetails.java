@@ -4,11 +4,13 @@
  */
 package addressbook;
 
+import java.io.Serializable;
+
 /**
  *
  * @author dmoc2
  */
-public class personDetails {
+public class personDetails implements Serializable {
     
     private String firstName;
     private String lastname;
@@ -67,10 +69,7 @@ public class personDetails {
         this.phoneNum = phoneNum;
     }
     
-    public void helloWorld()
-    {
-        System.out.println("hello world! & Hello Bob");
-    }
+   
     
     
     public String getDetails()
