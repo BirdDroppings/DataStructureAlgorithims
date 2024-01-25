@@ -4,6 +4,10 @@
  */
 package addressbook;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -13,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class AddressBookGUI extends javax.swing.JFrame {
 
+    personDetails [] arrayObj = new personDetails[5];
    
     personDetails person = new personDetails();
     
@@ -22,13 +27,14 @@ public class AddressBookGUI extends javax.swing.JFrame {
     private void addPerson()
     {
         
-        person.setFirstName(fnText.getText());
-        person.setLastname(snText.getText());
-        person.setEmail(emailText.getText());
-        person.setAddress(addressText.getText());
-        person.setPhoneNum(phoneNumText.getText());
+        String fn = fnText.getText();
+        String sn = snText.getText();
+        String email = emailText.getText();
+        String address = addressText.getText();
+        String phone = phoneNumText.getText();
+        personDetails addDetails = new personDetails(fn, sn, email, address, phone);
         
-        list.add(person);
+        list.add(addDetails);
         
         JOptionPane.showMessageDialog(null, "Details added to phone book successfully!");
     }
@@ -63,6 +69,47 @@ public class AddressBookGUI extends javax.swing.JFrame {
             
             
         }
+    }
+    
+    
+    private void writingToFile()
+    {
+        String firstName = fnText.getText();
+        String lastName = snText.getText();
+        String email = emailText.getText();
+        String address = addressText.getText();
+        String phoneNum = phoneNumText.getText();
+        
+        int index = 0;
+        
+        if(index> 5){
+        arrayObj [index] = new personDetails(firstName, lastName, email, address, phoneNum);
+        index++;
+        
+         try{
+            File f = new File("phoneBook.dat");
+            FileOutputStream fs = new FileOutputStream(f);
+            ObjectOutputStream os = new ObjectOutputStream(fs);
+   
+            for(int i=0; i>arrayObj.length; i++){
+            os.writeObject(arrayObj[i]);
+            }
+            os.close();
+            JOptionPane.showMessageDialog(null, "Successfully written  file");
+            
+        }
+        catch(IOException ex){
+            JOptionPane.showMessageDialog(null, "There is an error with the code "+ex);
+        }
+        
+        
+        } else if (index >= 5)
+        {
+            JOptionPane.showMessageDialog(null, "The file is full");
+        }
+       
+        
+        
     }
     
     
@@ -101,6 +148,7 @@ public class AddressBookGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         displayArea = new javax.swing.JTextArea();
         displayBTN = new javax.swing.JButton();
+        fileBTN = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +189,13 @@ public class AddressBookGUI extends javax.swing.JFrame {
             }
         });
 
+        fileBTN.setText("Write to File");
+        fileBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileBTNActionPerformed(evt);
+            }
+        });
+
         jLayeredPane1.setLayer(fnLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(snLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(emailLabel, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -156,6 +211,7 @@ public class AddressBookGUI extends javax.swing.JFrame {
         jLayeredPane1.setLayer(deleteBTN, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(displayBTN, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(fileBTN, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -169,12 +225,17 @@ public class AddressBookGUI extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(snLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(snText, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(74, 74, 74)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fnLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(snLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(snText, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(emailText, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(74, 74, 74))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(fileBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -215,9 +276,9 @@ public class AddressBookGUI extends javax.swing.JFrame {
                                     .addComponent(fnText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(phoneNumText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(29, 29, 29)
-                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(snLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(addressLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(snLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(20, 20, 20)
                                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(snText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +293,9 @@ public class AddressBookGUI extends javax.swing.JFrame {
                                     .addComponent(searchBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(deleteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deleteBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fileBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -260,7 +323,7 @@ public class AddressBookGUI extends javax.swing.JFrame {
 
     private void displayBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_displayBTNActionPerformed
         // TODO add your handling code here:
-        
+        displayArea.setText("");
         if(list.isEmpty())
         {
             JOptionPane.showMessageDialog(null, "There is no person details within the phone book");
@@ -277,6 +340,11 @@ public class AddressBookGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         search();
     }//GEN-LAST:event_searchBTNActionPerformed
+
+    private void fileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileBTNActionPerformed
+        // TODO add your handling code here:
+        writingToFile();
+    }//GEN-LAST:event_fileBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,6 +390,7 @@ public class AddressBookGUI extends javax.swing.JFrame {
     private javax.swing.JButton displayBTN;
     private javax.swing.JLabel emailLabel;
     private javax.swing.JTextField emailText;
+    private javax.swing.JButton fileBTN;
     private javax.swing.JLabel fnLabel;
     private javax.swing.JTextField fnText;
     private javax.swing.JLayeredPane jLayeredPane1;
