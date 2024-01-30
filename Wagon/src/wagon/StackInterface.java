@@ -10,4 +10,11 @@ package wagon;
  */
 public interface StackInterface {
     
+    public int size();
+    public boolean isEmpty();
+    public void enqueue(Object newItem);
+    public Object dequeue();
+    public Object frontElement();
+    public String display();    
+    
 }
