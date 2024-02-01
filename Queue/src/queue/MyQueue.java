@@ -6,6 +6,7 @@ package queue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -79,6 +80,11 @@ public class MyQueue implements QueueInterface {
             
         }
         return str;
-    }
+    }//end display
+    
+    
+    
+    
+    
     
 }

@@ -16,5 +16,5 @@ public interface StackInterface {
     public Object dequeue();
     public Object frontElement();
     public String display();    
-    
+    public Object removeAll();
 }

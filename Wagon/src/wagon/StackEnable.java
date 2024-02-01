@@ -6,6 +6,7 @@ package wagon;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,4 +85,18 @@ public class StackEnable implements StackInterface{
         }
         return str;
     }
+    
+    @Override
+    public Object removeAll(){
+        if(isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "There is nothing to remove");
+            return null;
+        } else {
+            JOptionPane.showConfirmDialog(null, "All has been removed");
+            return qlist.removeAll(qlist);
+        }
+    }
+    
+    
 }
