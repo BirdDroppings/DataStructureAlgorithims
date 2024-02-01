@@ -8,11 +8,14 @@ package wagon;
  *
  * @author dmoc2
  */
-public class WagonInvent extends javax.swing.JFrame {
+public class WagonInvent extends javax.swing.JFrame  {
 
     /**
      * Creates new form WagonInvent
      */
+    
+    StackInterface load = new StackEnable();
+    
     public WagonInvent() {
         initComponents();
     }
@@ -35,7 +38,7 @@ public class WagonInvent extends javax.swing.JFrame {
         listBTN = new javax.swing.JButton();
         sizeBTN = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        display = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,18 +46,38 @@ public class WagonInvent extends javax.swing.JFrame {
         jLabel1.setText("Add To Wagon Inventory");
 
         addBTN.setText("Add To Wagon");
+        addBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBTNActionPerformed(evt);
+            }
+        });
 
         removeBTN.setText("Remove From Wagon");
+        removeBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeBTNActionPerformed(evt);
+            }
+        });
 
         removeAllBTN.setText("Remove All Wagon");
 
         listBTN.setText("List Wagon");
+        listBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listBTNActionPerformed(evt);
+            }
+        });
 
         sizeBTN.setText("Size Of Wagon");
+        sizeBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sizeBTNActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        display.setColumns(20);
+        display.setRows(5);
+        jScrollPane1.setViewportView(display);
 
         jLayeredPane1.setLayer(TextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -124,6 +147,32 @@ public class WagonInvent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTNActionPerformed
+        // TODO add your handling code here:
+        
+        load.enqueue(TextField.getText());
+    }//GEN-LAST:event_addBTNActionPerformed
+
+    private void listBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listBTNActionPerformed
+        // TODO add your handling code here:
+         display.setText("");
+       display.append(load.display()); 
+    }//GEN-LAST:event_listBTNActionPerformed
+
+    private void removeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeBTNActionPerformed
+        // TODO add your handling code here:
+        
+        load.dequeue();
+        display.setText("");
+    }//GEN-LAST:event_removeBTNActionPerformed
+
+    private void sizeBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sizeBTNActionPerformed
+        // TODO add your handling code here:
+       display.setText("");
+      String size =  Integer.toString(load.size());
+       display.append("The size of the list is: "+size);
+    }//GEN-LAST:event_sizeBTNActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -162,10 +211,10 @@ public class WagonInvent extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextField;
     private javax.swing.JButton addBTN;
+    private javax.swing.JTextArea display;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton listBTN;
     private javax.swing.JButton removeAllBTN;
     private javax.swing.JButton removeBTN;
