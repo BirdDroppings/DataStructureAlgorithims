@@ -15,6 +15,7 @@ public interface QueueInterface {
     public void enqueue(Object newItem);
     public Object dequeue();
     public Object frontElement();
-    public String display();    
+    public String display();   
+    public Object removeAll();
     
 }
