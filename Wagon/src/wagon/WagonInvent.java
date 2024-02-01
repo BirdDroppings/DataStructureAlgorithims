@@ -60,6 +60,11 @@ public class WagonInvent extends javax.swing.JFrame  {
         });
 
         removeAllBTN.setText("Remove All Wagon");
+        removeAllBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeAllBTNActionPerformed(evt);
+            }
+        });
 
         listBTN.setText("List Wagon");
         listBTN.addActionListener(new java.awt.event.ActionListener() {
@@ -172,6 +177,11 @@ public class WagonInvent extends javax.swing.JFrame  {
       String size =  Integer.toString(load.size());
        display.append("The size of the list is: "+size);
     }//GEN-LAST:event_sizeBTNActionPerformed
+
+    private void removeAllBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeAllBTNActionPerformed
+        // TODO add your handling code here:
+       load.removeAll();
+    }//GEN-LAST:event_removeAllBTNActionPerformed
 
     /**
      * @param args the command line arguments
