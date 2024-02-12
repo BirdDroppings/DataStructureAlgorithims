@@ -31,15 +31,45 @@ public class DLList implements Interface {
     }
     
     //private method to arrive at given index 
-    private void setCurrent(){
-        
+    private void setCurrent(int index){
+        curr = head;
+        for(int i =1; i < index; i++)
+        {
+            curr = curr.getNext();
+        }
     }
     
     
     @Override
     public void add(int index, Object element){
-        
-    }
+        //adding newNode to an empty list
+        //adding at index of 1
+        //adding at a given index
+        if(isEmpty())
+        {
+            Node newNode = new Node(element, null, null);
+            head = newNode;
+            last = newNode;
+            // last = head; //other option
+        } else {
+            if(index == 1)
+            {
+             Node newNode = new Node(element, null, null);
+             newNode.setNext(head);
+             head.setPrev(newNode);
+             head = newNode;
+            } else { //add at a given index
+                setCurrent(index);
+                Node newNode = new Node(element, null, null);
+                //setting up our ref links 
+                newNode.setNext(curr);
+                Node prev = curr.getPrev(); // incorporating newNode
+                newNode.setPrev(prev); // incorporating newNode
+            }
+        }
+    }//end method
+    
+    
    
    
 
