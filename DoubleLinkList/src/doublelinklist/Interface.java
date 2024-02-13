@@ -14,7 +14,7 @@ public interface Interface {
     public int size();
     public void add(int index, Object element);
     public Object get(int index);
-    public void remove(int index, Object element);
+  //  public void remove(int index, Object element);
     public void printList();
     
     

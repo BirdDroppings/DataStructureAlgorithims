@@ -48,7 +48,7 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" + "element=" + element + '}';
+        return "Node{" + " element = " + element + '}';
         //return element.toString();
     }
     

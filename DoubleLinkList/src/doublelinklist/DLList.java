@@ -35,7 +35,8 @@ public class DLList implements Interface {
         curr = head;
         for(int i =1; i < index; i++)
         {
-            curr = curr.getNext();
+            System.out.println("Current "+curr.getElement());
+           // curr.getNext();
         }
     }
     
@@ -67,7 +68,29 @@ public class DLList implements Interface {
                 newNode.setPrev(prev); // incorporating newNode
             }
         }
+        size++; //manually manage the size!!
     }//end method
+    
+    @Override
+    public Object get(int index){
+        setCurrent(index);
+        return curr;
+    }
+    
+    @Override
+    public void printList()
+    {
+       /* Node aNode = head;
+        for(int i =0; i < size(); i++){
+            System.out.println(aNode.getElement());
+            aNode = aNode.getNext();
+        }   */
+        
+        for(Node aNode = head; aNode != null; aNode = aNode = aNode.getNext()){
+            System.out.println(aNode.getElement());
+        }
+    }
+    
     
     
    
