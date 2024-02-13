@@ -1,9 +1,26 @@
 public class factorial {
     public static void main(String[] args) {
-        int fact2 = factoral(5);
+      //  repeat();
+        recurisiveMe(1);
 
-        System.out.println(fact2);
+        int [] data = {1,2,3,10};
+
+        int arraySum = computeSum(data, 0);
+        System.out.println(arraySum);
+
+
     }
+
+
+    public static int computeSum(int [] data, int index){
+        if(index >= data.length){
+            return 0;
+        } else {
+            return data[index] = computeSum(data, index+1);
+        }
+    }
+
+
 
     public static int factoral(int n){
         if(n == 0){
@@ -12,4 +29,21 @@ public class factorial {
             return n *factoral(n-1);
         }
     }
+
+    public static void repeat()
+    {
+        for(int i=0; i < factoral(3); i++){
+            System.out.println("*");
+        }
+    }
+
+    public static void recurisiveMe(int n)
+    {
+        if(n <= 5){
+            System.out.println("*");
+            recurisiveMe(n+1);
+        }
+    }
+
+
 }
