@@ -20,6 +20,14 @@ public class factorial {
         }
     }
 
+    public static int fibMemo(int [] prevFibs, int n){
+        if (prevFibs[n-1] != 0) {
+            return prevFibs[n-1];
+        } else if (n ==1 || n==2) {
+            return 0;
+        }
+    }
+
 
 
     public static int factoral(int n){
