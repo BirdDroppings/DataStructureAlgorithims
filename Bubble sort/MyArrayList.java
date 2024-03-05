@@ -25,6 +25,26 @@ public class MyArrayList<ElemType> extends ArrayList<ElemType>{
         }//end for loop 1
     }//end betterBubble
 
+    public void simpleBubble()
+    {
+        Comparable elemAtJ; //using the comparable interface
+        Comparable elmemAtJplus;
+        boolean moreSwap = true;
+        while ( moreSwap == true) {
+            moreSwap = false;
+                for(int x=0; x < size()-1; x++){
+                    elemAtJ = (Comparable)get(x); //getting the items at the required index
+                elmemAtJplus = (Comparable)get(x+1);
+                    if (elemAtJ.compareTo(elmemAtJplus) >0) {
+                        swap(x, x+1);
+                        moreSwap = true;
+                    }
+                }
+        }
+    }
+
+
+
     private void swap(int pos1, int pos2){
         //temp holder for elements
         ElemType tempPos1 = get(pos1);

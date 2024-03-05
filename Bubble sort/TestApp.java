@@ -13,8 +13,8 @@ public class TestApp {
         list1.add(58);
 
         System.out.println(list1);
-
-        list1.betterBubble();
+        list1.simpleBubble();
+        //list1.betterBubble();
         System.out.println("After sort: "+list1);
         
         
