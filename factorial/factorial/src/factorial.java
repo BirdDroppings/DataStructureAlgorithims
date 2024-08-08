@@ -1,6 +1,6 @@
 public class factorial {
     public static void main(String[] args) {
-      //  repeat();
+        repeat();
         recurisiveMe(1);
 
         int [] data = {1,2,3,10};
@@ -19,14 +19,14 @@ public class factorial {
             return data[index] = computeSum(data, index+1);
         }
     }
-
-    public static int fibMemo(int [] prevFibs, int n){
+/* public static int fibMemo(int [] prevFibs, int n){
         if (prevFibs[n-1] != 0) {
             return prevFibs[n-1];
         } else if (n ==1 || n==2) {
             return 0;
-        }
-    }
+        
+    } */
+   
 
 
 
